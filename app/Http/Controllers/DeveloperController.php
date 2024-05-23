@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\DeveloperService;
+use Inertia\Inertia;
 
 class DeveloperController extends Controller
 {
@@ -13,17 +14,15 @@ class DeveloperController extends Controller
 
     public function index()
     {
-        //
+
+        return Inertia::render('Developers/DeveloperIndex', [
+            'developers' => $this->service->getAll()
+        ]);
     }
 
     public function store(array $data)
     {
         $this->service->store($data);
-    }
-
-    public function show()
-    {
-        //
     }
 
     public function truncate()
