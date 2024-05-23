@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import { Link } from '@inertiajs/vue3'
 
 defineProps({
     developers: {
@@ -39,8 +40,8 @@ defineProps({
                     </table>
 
                     <div class="p-5 flex justify-end">
-                        <inertia-link class="px-2" :href="developers.prev_page_url">Anterior</inertia-link>
-                        <inertia-link class="px-2" :href="developers.next_page_url">Próxima</inertia-link>
+                        <Link class="px-2" :href="developers.prev_page_url">Anterior</Link>
+                        <Link class="px-2" :href="developers.next_page_url">Próxima</Link>
                     </div>
 
 
