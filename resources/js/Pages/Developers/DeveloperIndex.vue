@@ -1,14 +1,23 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { Link } from '@inertiajs/vue3'
+import { Link, router, usePage } from '@inertiajs/vue3';
+import { ref } from "vue";
+
+const { props } = usePage();
+
+let term = ref(props.term || '');
 
 defineProps({
     developers: {
         type: Object,
         required: true,
     },
-
 });
+
+function search() {
+    const url = route('developer.index');
+    router.get(url, { term: term.value }, { preserveState: true, preserveScroll: true });
+}
 
 </script>
 
@@ -23,6 +32,11 @@ defineProps({
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+
+                    <div class="p-4">
+                        <label for="search">Pesquisar</label>
+                        <input id="search" type="text" v-model="term" @keyup="search" class="ml-2 px-2 py-1 text-sm rounded border">
+                    </div>
 
                     <table class="w-full">
                         <thead>

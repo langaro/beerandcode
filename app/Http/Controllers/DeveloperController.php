@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\DeveloperService;
+
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DeveloperController extends Controller
@@ -12,11 +14,11 @@ class DeveloperController extends Controller
         public DeveloperService $service = new DeveloperService()
     ) {}
 
-    public function index()
+    public function index(Request $request)
     {
 
         return Inertia::render('Developers/DeveloperIndex', [
-            'developers' => $this->service->getAll()
+            'developers' => $this->service->getAll($request)
         ]);
     }
 
